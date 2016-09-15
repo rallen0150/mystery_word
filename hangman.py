@@ -24,15 +24,14 @@ for char in word:
 print("There are {} letters in the word".format(letter_count))
 print(hidden)
 
-n = 0
+correct_bank = ()
 # User Input
-user_let = input("Enter a single letter: ")
+user_let = input("Enter a single letter: ").lower()
 
-for char in keep_word:
-    if user_let == keep_word[n]:
+for current_location, char in enumerate(keep_word):
+    if char == user_let:
         print("Correct letter")
     else:
         print("Incorrect letter")
 
-    user_let = input("Enter another letter: ")
-    n += 1
+    user_let = input("Enter another letter: ").lower()
