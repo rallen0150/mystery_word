@@ -27,20 +27,30 @@ while guess < 8 and hidden != word:
     # User Input
     user_let = input("Enter a single letter: ").lower()
 
+    # Place holder for an empty string to put inputted characters
+    space_holder = ""
+
+    if user_let in user_let:
+        for space in range(len(used_letters)):
+            if user_let == used_letters[space]:
+                print("\nAlready used that letter!\n")
+
+    # Checks to see if inputted character is in the word
     if user_let in word:
         print("Correct Letter")
-        space_holder = ""
         for space in range(len(word)):
             if user_let == word[space]:
                 space_holder += user_let
             else:
                 space_holder += hidden[space]
         hidden = space_holder
+        used_letters.append(user_let)
 
     else:
         print("Wrong Letter")
         guess += 1
         wrong_letters.append(user_let)
+        used_letters.append(user_let)
 
 if guess == 8:
     print("YOU LOSE!")
