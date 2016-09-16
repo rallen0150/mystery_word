@@ -1,4 +1,5 @@
 import random
+from string import ascii_lowercase
 
 open_file = open("/usr/share/dict/words")
 words = open_file.read().lower()
@@ -16,6 +17,7 @@ letter_count = len(word)
 
 wrong_letters = []
 used_letters = []
+unused = ascii_lowercase
 print("There are {} letters in the word".format(letter_count))
 
 guess = 0
@@ -23,6 +25,7 @@ while guess < 8 and hidden != word:
     print(hidden)
     print("You have {}/8 guesses wrong!".format(guess))
     print("Wrong Letters: {}".format(wrong_letters))
+    print("Unused Letters: {}".format(unused))
 
     # User Input
     user_let = input("Enter a single letter: ").lower()
@@ -30,10 +33,11 @@ while guess < 8 and hidden != word:
     # Place holder for an empty string to put inputted characters
     space_holder = ""
 
-    if user_let in user_let:
+    if user_let in used_letters:
         for space in range(len(used_letters)):
             if user_let == used_letters[space]:
                 print("\nAlready used that letter!\n")
+                user_let = input("Enter another letter: ").lower()
 
     # Checks to see if inputted character is in the word
     if user_let in word:
@@ -45,12 +49,14 @@ while guess < 8 and hidden != word:
                 space_holder += hidden[space]
         hidden = space_holder
         used_letters.append(user_let)
+        unused = unused.replace(user_let, "")
 
     else:
         print("Wrong Letter")
         guess += 1
         wrong_letters.append(user_let)
         used_letters.append(user_let)
+        unused = unused.replace(user_let, "")
 
 if guess == 8:
     print("YOU LOSE!")
