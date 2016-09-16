@@ -14,7 +14,7 @@ medium = []
 hard = []
 
 for pull_word in random_word:
-    if len(pull_word) < 6:
+    if len(pull_word) > 1 and len(pull_word) < 6:
         easy.append(pull_word)
     elif len(pull_word) >= 6 and len(pull_word) < 10:
         medium.append(pull_word)
