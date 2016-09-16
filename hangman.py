@@ -9,29 +9,41 @@ random_word = words.split("\n")
 # Creates a Random Word
 word = random.choice(random_word)
 
-# Random word place-holder
-keep_word = word
-print(word)
+# Replaces the letters in the word with a "_" and forms a new variable
+hidden = "_" * len(word)
 
-letter_count = 0
+letter_count = len(word)
 
-# Replaces the letters in the word with a "_"
-for char in word:
-    hidden = word.replace(char, "_")
-    word = hidden
-    letter_count += 1
-
+wrong_letters = []
+used_letters = []
 print("There are {} letters in the word".format(letter_count))
-print(hidden)
 
-correct_bank = ()
-# User Input
-user_let = input("Enter a single letter: ").lower()
+guess = 0
+while guess < 8 and hidden != word:
+    print(hidden)
+    print("You have {}/8 guesses wrong!".format(guess))
+    print("Wrong Letters: {}".format(wrong_letters))
 
-for current_location, char in enumerate(keep_word):
-    if char == user_let:
-        print("Correct letter")
+    # User Input
+    user_let = input("Enter a single letter: ").lower()
+
+    if user_let in word:
+        print("Correct Letter")
+        space_holder = ""
+        for space in range(len(word)):
+            if user_let == word[space]:
+                space_holder += user_let
+            else:
+                space_holder += hidden[space]
+        hidden = space_holder
+
     else:
-        print("Incorrect letter")
+        print("Wrong Letter")
+        guess += 1
+        wrong_letters.append(user_let)
 
-    user_let = input("Enter another letter: ").lower()
+if guess == 8:
+    print("YOU LOSE!")
+    print("The word was {}".format(word))
+else:
+    print("YOU GUESSED THE CORRECT WORD WHICH WAS {}!".format(word))
