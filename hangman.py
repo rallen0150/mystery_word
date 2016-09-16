@@ -24,11 +24,11 @@ guess = 0
 while guess < 8 and hidden != word:
     print(hidden)
     print("You have {}/8 guesses wrong!".format(guess))
-    print("Wrong Letters: {}".format(wrong_letters))
+    print("\nWrong Letters: {}".format(wrong_letters))
     print("Unused Letters: {}".format(unused))
 
     # User Input
-    user_let = input("Enter a single letter: ").lower()
+    user_let = input("\nEnter a single letter: ").lower()
 
     # Place holder for an empty string to put inputted characters
     space_holder = ""
@@ -37,11 +37,11 @@ while guess < 8 and hidden != word:
         for space in range(len(used_letters)):
             if user_let == used_letters[space]:
                 print("\nAlready used that letter!\n")
-                user_let = input("Enter another letter: ").lower()
+                user_let = input("\nEnter another letter: ").lower()
 
     # Checks to see if inputted character is in the word
     if user_let in word:
-        print("Correct Letter")
+        print("Correct Letter\n")
         for space in range(len(word)):
             if user_let == word[space]:
                 space_holder += user_let
@@ -52,7 +52,7 @@ while guess < 8 and hidden != word:
         unused = unused.replace(user_let, "")
 
     else:
-        print("Wrong Letter")
+        print("Wrong Letter\n")
         guess += 1
         wrong_letters.append(user_let)
         used_letters.append(user_let)
