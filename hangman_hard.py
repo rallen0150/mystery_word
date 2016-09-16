@@ -32,7 +32,8 @@ while regame == "yes" or regame == "y":
     elif diff == "3":
         word = random.choice(hard)
     else:
-        ("Invalid Option")
+        print("Invalid Option")
+        continue
 
     # Replaces the letters in the word with a "_" and forms a new variable
     hidden = "_" * len(word)
